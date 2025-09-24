@@ -1,0 +1,25 @@
+{
+  "name": "toxicweb",
+  "version": "1.0.0",
+  "description": "React製のトキシック度セルフチェックアプリケーション",
+  "main": "App.js",
+  "scripts": {
+    "preview": "vite preview",
+    "build": "tsc && vite build",
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.3",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.6"
+  }
+}

@@ -1,0 +1,25 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs>
+    <radialGradient id="smog" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#8570ff"/>
+      <stop offset="60%" stop-color="#574585"/>
+      <stop offset="100%" stop-color="#352c55"/>
+    </radialGradient>
+  </defs>
+  <rect width="240" height="240" rx="24" fill="#1f1a33"/>
+  <circle cx="120" cy="120" r="92" fill="url(#smog)" opacity="0.88"/>
+  <g fill="#d0c8ff" opacity="0.85">
+    <circle cx="92" cy="122" r="30"/>
+    <circle cx="158" cy="122" r="30"/>
+  </g>
+  <g fill="#423665">
+    <circle cx="94" cy="118" r="6"/>
+    <circle cx="148" cy="118" r="6"/>
+  </g>
+  <path d="M86 150 q34 -12 68 0" stroke="#1f1539" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.75"/>
+  <g stroke="#a99df5" stroke-width="4" stroke-linecap="round" opacity="0.65">
+    <path d="M50 88 q12 -10 28 -4"/>
+    <path d="M190 88 q-12 -10 -28 -4"/>
+    <path d="M120 48 v-18"/>
+  </g>
+</svg>
