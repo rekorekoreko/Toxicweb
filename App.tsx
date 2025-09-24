@@ -37,13 +37,13 @@ const TIPS = {
   ],
   mid: [
     "イライラを感じたら 10 秒の深呼吸をしてから再度状況を整理する",
-    "暴言になりそうなときは『次ラウンドでできる修正』を一つメモ",
+    "暴言になりそうなときは『ミュート』をして集中力をリセットする",
     "試合ごとに味方の良かった点を 3 つ探すルーティンをつくる",
   ],
   high: [
     "連敗が続くときはログアウトして別のアクティビティで気分転換",
     "信頼できるフレンドにプレイを観てもらい冷静なフィードバックを得る",
-    "必要に応じてメンタルコーチやコミュニティ規約を活用しセルフチェック",
+    "必要に応じてメンタルコーチ／カウンセラーに今の悩みを話し、自己点検をやってみよう",
   ],
 } as const;
 
@@ -68,8 +68,8 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 4,
-    question: "味方のミスに気付いたとき、まず取るべき対応は？",
-    options: ["自分がなぜソロプレイをしているか？をよく考える", "即座にチャットで指摘する", "リスキーなプレイで仕返しする"],
+    question: "野良のミスに気付いたとき、まず取るべき対応は？",
+    options: ["野良にトキシックをするのなら、そもそもソロプレイをしない", "即座にチャットで指摘する", "リスキーなプレイで仕返しする"],
     answer: 0,
   },
   {
@@ -81,7 +81,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "連敗中に試したい自分自身のケアは？",
-    options: ["短い休憩とポジティブな振り返り", "怒りのまま連戦する", "SNSで愚痴を拡散する"],
+    options: ["長い休憩とポジティブな振り返り", "怒りのまま連戦する", "SNSで愚痴を拡散する"],
     answer: 0,
   },
   {
@@ -134,7 +134,7 @@ function scoreToBand(score: number): BandInfo {
       band: "ピュア天使プレイヤー",
       colorClass: ZONE_CLASS.low,
       tipKey: "low",
-      message: "仲間の士気まで上げる空気清浄機的存在。きっとあなたは誰からもゲームに誘われるような人でしょう。",
+      message: "正真正銘の“聖人”FPSプレイヤー。あなたは空気清浄機のように場を整え、仲間の士気まで高めてくれる。\nきっと誰からも誘われる存在です。この調子で、みんなを笑顔にしていこう。",
       personaTitle: "称号：聖人",
       personaImage: "/images/persona-angel.svg",
       personaAlt: "PCとスマホを扱う天使のイラスト",
@@ -145,7 +145,7 @@ function scoreToBand(score: number): BandInfo {
       band: "トキシック予備軍プレイヤー",
       colorClass: ZONE_CLASS.mid,
       tipKey: "mid",
-      message: "トキシックになっている自分の姿を俯瞰して見られるなら、まだ間に合う！",
+      message: "トキシック一歩手前のプレイヤーへ。いまの自分を俯瞰できているなら、まだ間に合う。\n正論をぶつけられても、トキシックは止まらないよね。だからこそ、心から楽しめる余白を持とう。\nゲームでも散歩でも、あなたが緩む時間を。いつか本当に気づけたとき、あなたが幸せでありますように。",
       personaTitle: "称号：キレやすい人間",
       personaImage: "/images/persona-mid.svg",
       personaAlt: "怒って机を叩く人のイラスト",
@@ -155,8 +155,8 @@ function scoreToBand(score: number): BandInfo {
     band: "前世トキシックプレイヤー",
     colorClass: ZONE_CLASS.high,
     tipKey: "high",
-    message: "もう船下りよう！自分を癒してあげて！誰も幸せにならないよ！",
-    personaTitle: "称号：大気汚染物質 PM1.5",
+    message: "トキシックさに飲まれて苦しくなってるように見えるよ。いったん船を降りて、自分を労わろう。\n誰もそのままでは幸せになれない。本気で一度、カウンセラーに相談してみない？いまの気持ちをそのまま話してみて。\nプライドを手放すのは難しいけど、先延ばしにすると苦しさは続く。いま、助けを求めていい。",
+    personaTitle: "称号：PM1.5",
     personaImage: "/images/persona-toxic.svg",
     personaAlt: "紫色のスモッグに包まれた人物のイラスト",
   };
@@ -266,9 +266,9 @@ export default function App() {
             試合後に「言い過ぎたかも？」と感じたら、本当に楽しいと思えることを探そう！
           </p>
           <div className="badges">
-            <span className="badge">🔥 12問でさくっとセルフチェック</span>
-            <span className="badge">💾 データはブラウザにだけ保存</span>
-            <span className="badge">⏱️ 回答済み <strong>{answeredCount}</strong> / {QUESTIONS.length}</span>
+            <span className="badge">12問でさくっとセルフチェック</span>
+            <span className="badge">データはブラウザにだけ保存</span>
+            <span className="badge">回答済み <strong>{answeredCount}</strong> / {QUESTIONS.length}</span>
           </div>
           <div className="progress-track">
             {QUESTIONS.map((question, index) => {
@@ -330,7 +330,7 @@ export default function App() {
                 <p className="persona-title">{bandInfo.personaTitle}</p>
               </div>
               <p className="stage-score">総スコア: <strong>{score} / {TOTAL_SCORE}</strong></p>
-              <p>レコメンドされたアクションプランをチェックして、次のマッチへ備えましょう。</p>
+              <p>NEXTアクションをチェックして、次のマッチへ備えましょう。</p>
             </div>
           )}
         </section>
@@ -373,7 +373,7 @@ export default function App() {
               )}
             </div>
             {!isTipsUnlocked && (
-              <p className="lock-hint">解放条件: 12問すべてに回答すると閲覧できるよ</p>
+              <p className="lock-hint">解放条件: FPSトキシック診断の12問すべてに回答</p>
             )}
             <ul aria-hidden={!isTipsUnlocked}>
               {TIPS[bandInfo.tipKey].map((tip, index) => (
@@ -406,9 +406,9 @@ export default function App() {
                 )}
               </div>
               {!isQuizUnlocked && (
-                <p className="lock-hint">解放条件: 12問すべてに回答すると挑戦できるよ</p>
+                <p className="lock-hint">解放条件: FPSトキシック診断の12問すべてに回答</p>
               )}
-              <p className="quiz-intro">状況判断や感情コントロールを振り返る10問のクイズ。復習して、次はもっと上手に立ち回ろう。</p>
+              <p className="quiz-intro">状況判断や感情コントロールを振り返る10問のクイズ。</p>
               <div className="quiz-progress">
                 <span>回答数: {quizAnsweredCount} / {QUIZ_QUESTIONS.length}</span>
                 {quizComplete && (
